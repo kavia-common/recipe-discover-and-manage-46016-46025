@@ -1,104 +1,233 @@
-/* CSS Variables for Theme Management */
-:root {
-  /* Light theme colors */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8f9fa;
-  --text-primary: #282c34;
-  --text-secondary: #61dafb;
-  --border-color: #e9ecef;
-  --button-bg: #007bff;
-  --button-text: #ffffff;
+/* Ocean Professional base components */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: var(--surface);
+  background-image: var(--ocean-gradient);
+  box-shadow: var(--shadow);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
 }
 
-[data-theme="dark"] {
-  /* Dark theme colors */
-  --bg-primary: #1a1a1a;
-  --bg-secondary: #282c34;
-  --text-primary: #ffffff;
-  --text-secondary: #61dafb;
-  --border-color: #404040;
-  --button-bg: #0056b3;
-  --button-text: #ffffff;
+.navbar-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
-.App {
-  text-align: center;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  min-height: 100vh;
-  transition: background-color 0.3s ease, color 0.3s ease;
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  background: rgba(37,99,235,0.08);
+  color: var(--text);
+  border: 1px solid rgba(37,99,235,0.15);
+  box-shadow: var(--amber-glow);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.brand-mark {
+  width: 26px; height: 26px;
+  border-radius: 8px;
+  background: radial-gradient(55% 55% at 50% 50%, rgba(37,99,235,0.35), rgba(37,99,235,0.05));
+  display: grid; place-items: center;
+  color: var(--primary);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.brand-title {
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+
+.search-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background: var(--surface);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 12px;
+  padding: 8px 10px;
+  gap: 8px;
+  box-shadow: var(--shadow);
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  outline: none;
+  font-size: 14px;
+}
+
+.icon-btn {
+  border: 1px solid rgba(0,0,0,0.08);
+  background: var(--surface);
+  color: var(--text);
+  border-radius: 12px;
+  padding: 8px 10px;
+  cursor: pointer;
+  transition: transform 120ms ease, background 120ms ease, box-shadow 120ms ease;
+  box-shadow: var(--shadow);
+}
+.icon-btn:hover {
+  transform: translateY(-1px);
+  background: rgba(37,99,235,0.06);
+}
+.icon-btn.primary {
+  background: var(--primary);
+  color: white;
+  border-color: rgba(0,0,0,0.12);
+}
+.icon-btn.secondary {
+  background: var(--secondary);
+  color: #1a1202;
+  border-color: rgba(0,0,0,0.12);
+}
+
+/* Grid */
+.recipe-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 1200px) {
+  .recipe-grid {
+    padding: 0 8px;
   }
 }
 
-.App-header {
-  background-color: var(--bg-secondary);
-  min-height: 100vh;
+.card {
+  grid-column: span 3;
+  background: var(--surface);
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 1024px) {
+  .card { grid-column: span 4; }
+}
+@media (max-width: 768px) {
+  .card { grid-column: span 6; }
+}
+@media (max-width: 520px) {
+  .card { grid-column: span 12; }
+}
+
+.card-cover {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+  background: #dbeafe;
+}
+
+.card-body {
+  padding: 12px;
+  display: grid;
+  gap: 8px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(37,99,235,0.08);
+  color: var(--text);
+  border: 1px solid rgba(37,99,235,0.18);
+}
+
+/* Modal */
+.modal-backdrop {
+  position: fixed; inset: 0;
+  background: rgba(2,6,23,0.55);
+  backdrop-filter: blur(2px);
+  display: grid; place-items: center;
+  z-index: 50;
+}
+
+.modal-sheet {
+  width: min(920px, calc(100vw - 24px));
+  max-height: calc(100vh - 24px);
+  overflow: auto;
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid rgba(0,0,0,0.14);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.35);
+}
+
+/* Sidebar */
+.sidebar {
+  width: 340px;
+  transition: width 220ms ease, transform 220ms ease;
+  background: var(--surface);
+  border-left: 1px solid rgba(0,0,0,0.08);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.sidebar.hidden {
+  width: 0;
+}
+
+.sidebar-inner {
+  height: 100%;
   display: flex;
   flex-direction: column;
+}
+
+.sidebar-header {
+  padding: 14px 14px;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: var(--text-primary);
-  transition: background-color 0.3s ease;
-  position: relative;
+  justify-content: space-between;
 }
 
-.App-link {
-  color: var(--text-secondary);
-  transition: color 0.3s ease;
+.sidebar-list {
+  padding: 10px;
+  display: grid;
+  gap: 10px;
+  overflow: auto;
 }
 
-.theme-toggle {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background-color: var(--button-bg);
-  color: var(--button-text);
-  border: none;
+.sidebar-item {
+  display: grid;
+  grid-template-columns: 48px 1fr auto;
+  gap: 10px;
+  align-items: center;
+  padding: 8px;
+  border-radius: 12px;
+  background: rgba(37,99,235,0.06);
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+.sidebar-thumb {
+  width: 48px; height: 48px;
+  object-fit: cover;
   border-radius: 8px;
-  padding: 10px 20px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: #dbeafe;
 }
 
-.theme-toggle:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  opacity: 0.9;
-}
-
-.theme-toggle:active {
-  transform: translateY(0);
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* Responsive design for mobile */
-@media (max-width: 768px) {
-  .theme-toggle {
-    top: 10px;
-    right: 10px;
-    padding: 8px 16px;
-    font-size: 12px;
-  }
+.small {
+  font-size: 12px;
+  color: var(--text-muted);
 }
