@@ -1,4 +1,4 @@
-# Recipe Discovery and Management Frontend Architecture
+# Recipe Pro.
 
 ## System Overview
 
